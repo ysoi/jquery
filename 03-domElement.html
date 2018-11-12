@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            border-radius:50%;
+            background:skyblue;
+            /* line-height:100px; */
+            /* text-align:center; */
+           
+            font-size:10px;
+        }
+        div div{
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            background:rgb(199, 34, 116);
+            line-height:100px;
+            /* text-align:center; */
+           
+            font-size:10px; 
+        }
+        div div div{
+            width:15px;
+            height:15px;
+            border-radius:50%;
+            background:rgb(83, 204, 12);
+            line-height:100px;
+            /* text-align:center; */
+            margin:10px;
+            font-size:10px;
+        }
+
+    </style>
+</head>
+
+<body>
+        
+        <div class="first">
+           
+            <div class='second'>
+                <div>next</div>
+            </div>
+        </div>
+       
+       <button>复制元素</button>
+</body>
+<script src="./jquery.js"></script>
+<script>
+    // let h1=$('<h1>一级标题</h1>');
+    // let h6=$('<h6>六级标题</h6>');
+    // $('h2').before(h1);
+    // h1.insertBefore( $('h2'));
+    // $('h4').after(h6);
+    // h6.insertAfter($('h4'));
+    // let bigger=$('<div>bigger circle</div>');
+    // bigger.css({
+    //     width:300,
+    //     height:300
+    // })
+  
+    // $('div:eq(0)').wrapInner(bigger);
+//    console.log( $('.first'))
+   
+
+
+   //原生 删除元素
+//    let first=document.getElementsByClassName('first')[0];
+//    let second=document.getElementsByClassName('second')[0];
+//   second.parentNode.removeChild(second);
+//      $('.first').html('');
+$
+
+ $('button').click(function(){
+//    $('.second').replaceWith($(' <h1>我是标题</h1>'));
+//    $(' <h1>我是标题</h1>').replaceAll( $('.second'));
+ let clone=$('.second').clone();
+ console.log(clone);
+ })
+ </script>
+</html>

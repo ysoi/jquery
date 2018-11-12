@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas{
+            margin:100px 350px;
+        }
+    </style>
+</head>
+<body>
+   <canvas width="600px" height="400px" id="canvas" ></canvas>
+  
+</body>
+<script>
+    let canvas=document.getElementById('canvas');
+    // let img=document.querySelector('img');
+    // console.log(img);
+    canvas.style.background='#e3e3e3';
+    
+    let ctx=canvas.getContext('2d');
+    //小球运动
+
+
+
+    //js动画
+    let left=10;
+    let tp=30;
+    let vx=5;
+    let vy=5
+    requestAnimationFrame(go);
+    function go(){
+       
+        ctx.clearRect(0,0,600,400);
+        ctx.beginPath();
+        
+        ctx.rect(left,tp,10,30);
+        ctx.stroke();
+        left+=vx;
+        tp+=vy;
+        if(left>=590||left<10){
+           vx=-vx;
+        };
+        if(tp>=370||tp<30){
+            vy=-vy;
+        }
+      requestAnimationFrame(go);
+       
+    }s
+    
+    绘图执行上下文
+    ctx.beginPath();
+    ctx.moveTo(50,50);
+    ctx.lineTo(100,100);
+    ctx.lineTo(100,200);
+    
+    ctx.closePath();
+    ctx.fillStyle="red";
+    ctx.stroke();
+   
+    ctx.fill();
+    
+    // console.log(context);
+    //绘制矩形
+    ctx.beginPath();
+    ctx.fillRect(200,200,100,100);
+    ctx.clearRect(200,200,100,100);
+    //绘制圆形
+    ctx.beginPath();
+    ctx.moveTo(200,200);
+    ctx.arc(200,200,30, 0*Math.PI/180,90*Math.PI/180,true);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    ctx.clearRect(0,0,600,400);
+   
+    绘制文字
+    ctx.beginPath();
+    ctx.moveTo(10,10);
+    ctx.font="10px '微软雅黑'";
+    ctx.fillStyle="#333";
+    ctx.textAlign='right';
+    ctx.fillText('Heppy day',100,100,400);
+    ctx.strokeText();
+    绘制图片
+    let newImage;
+    let img=new Image();
+    img.setAttribute('crossOrigin', 'anonymous');
+    img.src='./img/link.jpg';
+  
+    img.onload=function(){
+        ctx.drawImage(this,100,100);
+        newImage=canvas.toDataURL('image/jpg',0.6);
+        let newI=new Image();
+        newI.src=newImage;
+        document.getElementById('box').appendChild(newI);
+
+       }
+    //裁剪图片
+    img.onload=function(){
+        // ctx.drawImage(this,10,10);
+        ctx.drawImage(this,35,10,300,190,100,100,300,100);
+    }
+    ctx.fillStyle="#333";
+    ctx.shadowColor="rgb(0,200,0)";
+    ctx.shadowBlur=10;
+    ctx.shadowOffsetX=10;
+    ctx.shadowOffsetY=10;
+    ctx.fillRect(100,100,100,100);
+
+    创建线性渐变
+   ctx.beginPath();
+   var gra=ctx.createLinearGradient(0,0,170,0);
+   gra.addColorStop(0.4,'rgb(200,0,0)');
+   gra.addColorStop(0.5,'rgb(0,0,220)');
+   ctx.rect(0,0,400,80);
+   ctx.fillStyle=gra;
+   ctx.rotate(90*Math.PI/180);
+   ctx.fill();
+   ctx.clearRect(0,0,600,400);
+   创建径向渐变
+  
+   ctx.scale(2,2);
+   ctx.translate(10,10);
+   ctx.beginPath();
+   var rad=ctx.createRadialGradient(100,100,10,100,100,30);
+   rad.addColorStop(0,'#543');
+   rad.addColorStop(1,'#be3');
+   ctx.arc(100,100,40,0*Math.PI/180,360*Math.PI/180);
+   ctx.fillStyle=rad;
+   ctx.fill();
+  画布渲染画布
+  封装矩形
+  function ItcastRect(option){
+      this._int(option);
+  }
+  IncastRect.prototype={
+      _init:function(option){
+          option=option||{};
+          this.x=option.x===0?0:option.x||100;
+          this.y=option.y===0?0:option.y||100;
+          this.w=option.w||100;
+          this.h=option.h||100;
+          this.angle=option.angle===0?0:option.angle||0;
+          this.fillstyle=option.fillStyle||'silver';
+          this.strokeStyle=option.stroke||'red';
+          this.strokeWidth=option.strokeWidth||4;
+          this.scaleX=option.scaleX||1;
+          this.scaleY=option.scaleY||1;
+        },
+        render:function(ctx){
+            ctx.save();
+            ctx.translate(this.x,this.y);
+            ctx.rotate(this.angle*Math.PI/180);
+            ctx.scale(this.scaleX,this.scaleY);
+            ctx.fillStyle=this.fillStyle;
+            
+        }
+  }
+
+</script>
+</html>
